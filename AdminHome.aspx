@@ -20,9 +20,9 @@
                 <asp:BoundField DataField="UnskilledManpower" HeaderText="UnskilledManpower" SortExpression="UnskilledManpower" />
                 <asp:BoundField DataField="Lifters" HeaderText="Lifters" SortExpression="Lifters" />
                 <asp:BoundField DataField="HeavyMachineOperators" HeaderText="HeavyMachineOperators" SortExpression="HeavyMachineOperators" />
-                <asp:BoundField DataField="Crane" HeaderText="Crane" SortExpression="Crane" />
-                <asp:BoundField DataField="Roller" HeaderText="Roller" SortExpression="Roller" />
                 <asp:BoundField DataField="AsphaltMixer" HeaderText="AsphaltMixer" SortExpression="AsphaltMixer" />
+                <asp:BoundField DataField="Roller" HeaderText="Roller" SortExpression="Roller" />
+                <asp:BoundField DataField="Crane" HeaderText="Crane" SortExpression="Crane" />
             </Columns>
             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
             <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
