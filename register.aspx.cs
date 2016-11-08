@@ -20,7 +20,7 @@ public partial class register : System.Web.UI.Page
     {
         string insertSQL;
         insertSQL = "INSERT INTO [Table] (";
-        insertSQL += "FirstName,LastName,Password,email,Type)";
+        insertSQL += "FirstName,LastName,email,Password,Type)";
         insertSQL += "VALUES ('";
         insertSQL += TextBox1.Text + "', '";
         insertSQL += TextBox2.Text + "', '";

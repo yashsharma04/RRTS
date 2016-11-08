@@ -11,8 +11,9 @@
     <asp:Label ID="Label1" Text="Sign up" runat="server" />
         <br />
     <div>
-        <br />
+        First Name
         <asp:TextBox ID="TextBox1" placeholder="First Name" runat="server" />
+        <br />
         <br />
         <br />
         <asp:TextBox ID="TextBox2" placeholder='Last Name' runat="server" />
@@ -37,21 +38,7 @@
         <asp:Button ID="Button1" Text="Submit" runat="server" OnClick="Button1_Click" />
         <br />
         <br />
-        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-        <br />
-        <br />
-        <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1">
-            <Columns>
-                <asp:CommandField ShowSelectButton="True" />
-                <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" />
-                <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
-                <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
-                <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password" />
-                <asp:BoundField DataField="email" HeaderText="email" SortExpression="email" />
-                <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type" />
-            </Columns>
-        </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RRTSDBConnectionString %>" SelectCommand="SELECT [Id], [FirstName], [LastName], [Password], [email], [Type] FROM [Table]"></asp:SqlDataSource>
+        <asp:Label ID="Label2" runat="server"></asp:Label>
     </div>
     </form>
 </body>
