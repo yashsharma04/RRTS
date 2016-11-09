@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"  Debug="true" AutoEventWireup="true"  CodeFile="RequestDetails.aspx.cs" Inherits="RequestDetails" %>
+﻿<%@ Page Language="C#"  Debug="true" AutoEventWireup="true"  CodeFile="RequestDetails.aspx.cs" Inherits="RequestDetails"  Theme="SkinFile"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -22,7 +22,9 @@
                 return false;
             }
             else {
-                window.open("ClerkHome.aspx", "_self");
+                
+                
+
                 return false;
             }
         }
@@ -48,7 +50,19 @@
         <asp:TextBox id="locality" runat="server" /> 
         <br />  
         <br />
-        <asp:Button AutoPostBack="False" class="waves-effect waves-light btn" OnClientClick="return ShowCal();" id="btn1" Text="Submit Details"  runat="server" /> 
+        <asp:Label ID="Label1" Text="Enter No of potholes" runat="server" />
+        <asp:TextBox id="potholes" runat="server" /> 
+        <br />
+        Severity
+        <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+            <asp:ListItem Selected="True">Low</asp:ListItem>
+            <asp:ListItem>Medium</asp:ListItem>
+            <asp:ListItem>High</asp:ListItem>
+        </asp:RadioButtonList>
+        <br />
+        <asp:Button AutoPostBack="False" class="waves-effect waves-light btn" OnServerClick="btn1_Click" id="btn1" Text="Submit Details"  runat="server" OnClick="btn1_Click1" /> 
+        <br />
+        <asp:Label ID="Label2" runat="server"></asp:Label>
     </div>
     </form>
     </div>

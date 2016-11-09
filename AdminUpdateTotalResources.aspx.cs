@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.Configuration;
+using System.IO;
+using System.Xml;
 
 public partial class AdminUpdateTotalResources : System.Web.UI.Page
 {
@@ -153,6 +155,19 @@ public partial class AdminUpdateTotalResources : System.Web.UI.Page
                 Button1.Enabled = false;
                 Button2.Enabled = false;
                 GridView1.DataBind();
+                string file = Path.Combine(Request.PhysicalApplicationPath, @"Products.xml");
+                FileStream fs = new FileStream(file, FileMode.Create);
+                XmlTextWriter w = new XmlTextWriter(fs, null);
+                w.WriteStartDocument();
+                w.WriteStartElement("Info");
+                w.WriteAttributeString("Skilled Manpower", uSkilledManpower.ToString());
+                w.WriteAttributeString("Unskilled Manpower", uUnskilledManpower.ToString());
+                w.WriteAttributeString("Lifters", uLifters.ToString());
+                w.WriteAttributeString("Heavy Machine Operators", uHeavyMachineOperators.ToString());
+                w.WriteEndElement();
+                w.WriteEndDocument();
+                w.Close();
+                fs.Close();
                 updateAvailable(uSkilledManpower, uUnskilledManpower, uLifters, uHeavyMachineOperators, uAsphaltMixer, uRoller, uCrane);
             }
             catch (Exception err)

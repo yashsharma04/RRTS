@@ -10,36 +10,56 @@ using System.Web.Configuration;
 
 public partial class RequestDetails : System.Web.UI.Page
 {
-    private String connectionString;
+    string connectionString = WebConfigurationManager.ConnectionStrings["RRTSDBConnectionString"].ConnectionString;
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
     }
-    protected void btn1_Click(Object sender, EventArgs e)
+    protected void btn1_Click(Object sender ,EventArgs e )
     {
-        connectionString = WebConfigurationManager.ConnectionStrings["db2"].ConnectionString;
+    }
+    protected void btn1_Click1(object sender, EventArgs e)
+    {
+
+
         SqlConnection con = new SqlConnection(connectionString);
-        SqlCommand cmd = new SqlCommand("select * from request", con);
-
-        con.Open();
-        SqlDataReader r;
-        r = cmd.ExecuteReader();
-        int id =0 ; 
-        while (r.Read())
+        SqlCommand cmd = new SqlCommand("select * from [Repair]", con);
+        try
         {
-            id = Convert.ToInt32(r["id"].ToString());       
-        }
-        r.Close();
-        int idd = id + 1;
-        String street1 = street.Text;
-        String locality1 = locality.Text;
-        
-        SqlCommand cmd1 = new SqlCommand("insert into request(id,street,locality) values ('"+idd+"','"+street1+"','"+locality1+"')", con);
-        
-        int add = cmd1.ExecuteNonQuery();
-        
-        con.Close();
-        Response.Redirect("~/ClerkHome.aspx");
+            con.Open();
+            SqlDataReader r;
+            r = cmd.ExecuteReader();
+            int id = 0;
+            while (r.Read())
+            {
+                id = Convert.ToInt32(r["id"].ToString());
+            }
+            r.Close();
+            Label2.Text += id.ToString();
+            int idd = id + 1;
 
+            String street1 = street.Text;
+            String locality1 = locality.Text;
+            String no = potholes.Text;
+            String sev = RadioButtonList1.SelectedValue;
+
+
+            SqlCommand cmd1 = new SqlCommand("insert into [Repair] values ('" + idd + "','" + street1 + "','" + locality1 + "','" + no + "','" + sev + "')", con);
+
+            int add = cmd1.ExecuteNonQuery();
+            Response.Redirect("~/ClerkHome.aspx");    
+
+        }
+        catch (Exception err)
+        {
+            Label2.Text = err.Message;
+
+        }
+        finally
+        {
+            con.Close();
+
+        }
     }
 }

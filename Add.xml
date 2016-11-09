@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements>
+  <Ad>
+    <ImageUrl>amazon.jpg</ImageUrl>
+    <NavigateUrl>http://www.amazon.com</NavigateUrl>
+    <AlternateText>Amazon</AlternateText>
+    <Impressions>1</Impressions>
+    <Keyword>Computer</Keyword>
+  </Ad>
+</Advertisements>

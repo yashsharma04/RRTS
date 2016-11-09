@@ -83,6 +83,7 @@ public partial class SuperVisorRepairDetails : System.Web.UI.Page
     {
         if(Page.IsValid)
         {
+            string RepairId = Request.QueryString["id"];
             // GET repair Id from query in URL.
             uSkilledManpower = Convert.ToInt16(TextBox1.Text);
             uUnskilledManpower = Convert.ToInt16(TextBox2.Text);
@@ -95,9 +96,10 @@ public partial class SuperVisorRepairDetails : System.Web.UI.Page
             int ongoing = 0;
             if(RadioButtonList1.SelectedValue == "Yes")
                 ongoing = 1;
+            DateTime startDate = Calendar1.SelectedDate;
             string insertSQL;
             insertSQL = "INSERT INTO [Resources] (";
-            insertSQL += "SkilledManpower, UnskilledManpower, Lifters, HeavyMachineOperators, AsphaltMixer, Roller, Crane, Ongoing, Priority) ";
+            insertSQL += "SkilledManpower, UnskilledManpower, Lifters, HeavyMachineOperators, AsphaltMixer, Roller, Crane, RepairId, Ongoing, Priority, RepairDate) ";
             insertSQL += "VALUES ('";
             insertSQL += uSkilledManpower.ToString() + "', '";
             insertSQL += uUnskilledManpower.ToString() + "', '";
@@ -106,8 +108,10 @@ public partial class SuperVisorRepairDetails : System.Web.UI.Page
             insertSQL += uAsphaltMixer.ToString() + "', '";
             insertSQL += uRoller.ToString() + "', '";
             insertSQL += uCrane.ToString() + "', '";
+            insertSQL += RepairId + "', '";
             insertSQL += ongoing.ToString() + "', '";
-            insertSQL += priority + "')";
+            insertSQL += priority + "', '";
+            insertSQL += startDate.ToString() + "')";
             SqlConnection con = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(insertSQL, con);
             // Try to open database and read information.
@@ -127,6 +131,7 @@ public partial class SuperVisorRepairDetails : System.Web.UI.Page
             {
                 con.Close();
             }
+            Response.Redirect("SupervisorHome.aspx");
         }
     }
 }

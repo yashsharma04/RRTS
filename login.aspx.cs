@@ -13,14 +13,14 @@ public partial class login : System.Web.UI.Page
     string connectionString = WebConfigurationManager.ConnectionStrings["RRTSDBConnectionString"].ConnectionString;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
         bool loginFlag = false;
         string email = TextBox1.Text;
         string passw = TextBox2.Text;
-        string type = DropDownList1.SelectedValue;
+        string type = RadioButtonList1.SelectedValue;
         string selectSQL = "SELECT * FROM [Table] WHERE email = '" + email +"' and Password = '" + passw + "' and type = '" + type + "'";
         SqlConnection con = new SqlConnection(connectionString);
         SqlCommand cmd = new SqlCommand(selectSQL, con);
@@ -28,13 +28,14 @@ public partial class login : System.Web.UI.Page
         // Try to open database and read information.
         try
         {
-        con.Open();
-        reader = cmd.ExecuteReader();
-        while (reader.Read())
-        {
-           loginFlag = true;
-        }
-        reader.Close();
+            con.Open();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                loginFlag = true;
+                Session["login"] = "True";
+            }
+            reader.Close();
         }
         catch (Exception err)
         {
@@ -67,5 +68,13 @@ public partial class login : System.Web.UI.Page
                     }
             }
         }
+       else
+       {
+           Label2.Text = "Username, Password or Category wrong";
+       }
+    }
+    protected void AdRotator1_AdCreated(object sender, AdCreatedEventArgs e)
+    {
+
     }
 }
