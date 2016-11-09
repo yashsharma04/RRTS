@@ -11,4 +11,8 @@ public partial class ClerkHome : System.Web.UI.Page
     {
 
     }
+    protected void func(Object sender , EventArgs e )
+    {
+        Response.Redirect("~/RequestDetails.aspx");    
+    }
 }
